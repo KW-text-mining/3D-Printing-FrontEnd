@@ -12,8 +12,8 @@ export default function AppDatePicker2() {
   const start = JSON.stringify(pickerInput.startDate).slice(1,11);
   const end = JSON.stringify(pickerInput.endDate).slice(1,11);
 
+  // date 지정시, dispatch 적용
   const dispatch = useDispatch();
-
   const onClick =() => {
     dispatch(changeDate(start+end));
   }
@@ -50,6 +50,7 @@ export default function AppDatePicker2() {
           />
         </Grid>
         <Grid item xs={12} md={2}>
+          {/* 날짜 조건 충족하지 못할 경우 button disabled */}
           <Button onClick={onClick} disabled={pickerInput.isError} >Apply</Button>
           <Button onClick={pickerInput.onReset}>Reset</Button>
         </Grid>
