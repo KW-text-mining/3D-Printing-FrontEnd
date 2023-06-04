@@ -1,43 +1,43 @@
 export default [
     {
       text:'customizer',
-      value : 14
+      value : 100
     },
     {
       text:'buckle',
-      value : 12
+      value : 100
     },
     {
       text:'holder',
-      value : 14
+      value : 100
     },
     {
       text:'wars',
-      value : 13
+      value :100
     },
     {
       text:'marketbot',
-      value : 12
+      value : 100
     },
     {
       text:'specs',
-      value : 21
+      value : 100
     },
     {
       text:'fashion',
-      value : 12
+      value : 100
     },
     {
       text:'costumechallenge',
-      value : 20
+      value : 100
     },
     {
       text:'marvel',
-      value : 16
+      value : 100
     },
     {
       text:'xbox',
-      value : 12
+      value :100
     },
 
 ]

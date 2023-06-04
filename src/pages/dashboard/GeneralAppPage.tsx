@@ -1,13 +1,14 @@
-import {useState, useRef} from 'react'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Container, Grid, Stack, Button, TextField } from '@mui/material';
-import { EcommerceLatestProducts } from 'src/sections/@dashboard/general/e-commerce';
-// auth
-import { useAuthContext } from '../../auth/useAuthContext';
+import { Container, Grid, Stack } from '@mui/material';
+// redux
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/rootReducer';
 // _mock_
 import {
   _appFeatured,
@@ -21,51 +22,41 @@ import {
 } from '../../_mock/arrays';
 // components
 import { useSettingsContext } from '../../components/settings';
-
+import Progressbar from './Progressbar';
 // sections
 import {
-  AppWidget,
-  AppWelcome,
-  AppFeatured,
-  AppNewInvoice,
-  AppTopAuthors,
-  AppTopRelated,
-  AppAreaInstalled,
-  AppWidgetSummary,
-  AppCurrentDownload,
-  AppTopInstalledCountries,
   CategoryOneGraph,
-  AppDatePicker,
   AppDatePicker2,
   TagWordCloud,
   Ranks,
   Words,
+  BarChart,
 } from '../../sections/@dashboard/general/app';
-
-import {
-  BankingContacts,
-} from '../../sections/@dashboard/general/banking';
-// import { DateRangePickerProps } from '../../../src/components/date-range-picker/types';
-// assets
-import { SeoIllustration } from '../../assets/illustrations';
 
 // ----------------------------------------------------------------------
 
-
-
 export default function GeneralAppPage() {
-  const { user } = useAuthContext();
-
   const theme = useTheme();
-
   const { themeStretch } = useSettingsContext();
+  const [loading, setLoading] = useState(true);
+  const [bigcategory, setBigCategory] = useState([]);
 
-  // const [endDate, setEndDate] = useState(end);
+  const date = useSelector((state:RootState) => state.startenddate);
+  const start = JSON.stringify(date).slice(1,11)
+  const end = JSON.stringify(date).slice(11,21)
 
-  // const [startDate, setStartDate] = useState(start);
+  // api 호출
+  useEffect(() => {
+    const fetchDatas = async () => {
+        const response = await axios.get(
+          `http://35.73.182.58:8080/data/period?startDate=${start}&endDate=${end}`
+        );
 
-  // const isError =
-  //   (startDate && endDate && isBefore(new Date(endDate), new Date(startDate))) || false;
+        setBigCategory(response.data);
+        setLoading(false);
+    };
+     fetchDatas();
+  }, [start,end]);
 
   return (
     <>
@@ -78,23 +69,14 @@ export default function GeneralAppPage() {
         <Grid item xs={12} md={12}>
             <AppDatePicker2 />
         </Grid>
+        
           <Grid item xs={12} md={8}>
+          {loading ? <Progressbar/> :
             <Stack spacing={2}>
             <CategoryOneGraph
               title="BigCategory Analytics"
               chart={{
-                series: [
-                  { label: '3D Printing', value: 14 },
-                  { label: 'Art', value: 23 },
-                  { label: 'Fashion', value: 21 },
-                  { label: 'Gadgets', value: 17 },
-                  { label: 'Hobby', value: 15 },
-                  { label: 'Household', value: 10 },
-                  { label: 'Learning', value: 12 },
-                  { label: 'Models', value: 17 },
-                  { label: 'Tools', value: 21 },
-                  { label: 'Toys & Games', value: 23 }
-                ],
+                series: bigcategory,
                 colors: [
                   theme.palette.error.dark,
                   theme.palette.warning.dark,
@@ -109,166 +91,19 @@ export default function GeneralAppPage() {
                 ],
               }}
             />
-            <TagWordCloud title="LDA WordCloud" words={Words} />
+            <TagWordCloud title="LDA WordCloud" />
             </Stack>
+          }
           </Grid>
-          
+        
           <Grid item xs={12} md={4}>
             <Ranks title="BigCategory Ranks" list={_bigcategory_ranks} />
           </Grid>
-          
 
-
-       {/* <AppWelcome
-              title={`Welcome back! \n ${user?.displayName}`}
-              description="If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything."
-              img={
-                <SeoIllustration
-                  sx={{
-                    p: 3,
-                    width: 360,
-                    margin: { xs: 'auto', md: 'inherit' },
-                  }}
-                />
-              }
-              action={<Button variant="contained">Go Now</Button>}
-            />
-          </Grid> */}
-
-          {/* <Grid item xs={12} md={4}>
-            <InvoiceNewEditStatusDate/>
-          </Grid> */}
-
-          {/* <Grid item xs={12} md={4}>
-            <AppWidgetSummary
-              title="Total Active Users"
-              percent={2.6}
-              total={18765}
-              chart={{
-                colors: [theme.palette.primary.main],
-                series: [5, 18, 12, 51, 68, 11, 39, 37, 27, 20],
-              }}
-            />
+          <Grid item xs={12} md={12}>
+            <BarChart title="Bar Chart"/>
           </Grid>
 
-          <Grid item xs={12} md={4}>
-            <AppWidgetSummary
-              title="Total Installed"
-              percent={0.2}
-              total={4876}
-              chart={{
-                colors: [theme.palette.info.main],
-                series: [20, 41, 63, 33, 28, 35, 50, 46, 11, 26],
-              }}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <AppWidgetSummary
-              title="Total Downloads"
-              percent={-0.1}
-              total={678}
-              chart={{
-                colors: [theme.palette.warning.main],
-                series: [8, 9, 31, 8, 16, 37, 8, 33, 46, 31],
-              }}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <AppCurrentDownload
-              title="Current Download"
-              chart={{
-                colors: [
-                  theme.palette.primary.main,
-                  theme.palette.info.main,
-                  theme.palette.error.main,
-                  theme.palette.warning.main,
-                ],
-                series: [
-                  { label: 'Mac', value: 12244 },
-                  { label: 'Window', value: 53345 },
-                  { label: 'iOS', value: 44313 },
-                  { label: 'Android', value: 78343 },
-                ],
-              }}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={8}>
-            <AppAreaInstalled
-              title="Area Installed"
-              subheader="(+43%) than last year"
-              chart={{
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-                series: [
-                  {
-                    year: '2019',
-                    data: [
-                      { name: 'Asia', data: [10, 41, 35, 51, 49, 62, 69, 91, 148] },
-                      { name: 'America', data: [10, 34, 13, 56, 77, 88, 99, 77, 45] },
-                    ],
-                  },
-                  {
-                    year: '2020',
-                    data: [
-                      { name: 'Asia', data: [148, 91, 69, 62, 49, 51, 35, 41, 10] },
-                      { name: 'America', data: [45, 77, 99, 88, 77, 56, 13, 34, 10] },
-                    ],
-                  },
-                ],
-              }}
-            />
-          </Grid>
-
-          <Grid item xs={12} lg={8}>
-            <AppNewInvoice
-              title="New Invoice"
-              tableData={_appInvoices}
-              tableLabels={[
-                { id: 'id', label: 'Invoice ID' },
-                { id: 'category', label: 'Category' },
-                { id: 'price', label: 'Price' },
-                { id: 'status', label: 'Status' },
-                { id: '' },
-              ]}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <AppTopRelated title="Top Related Applications" list={_appRelated} />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <AppTopInstalledCountries title="Top Installed Countries" list={_appInstalled} />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <AppTopAuthors title="Top Authors" list={_appAuthors} />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <Stack spacing={3}>
-              <AppWidget
-                title="Conversion"
-                total={38566}
-                icon="eva:person-fill"
-                chart={{
-                  series: 48,
-                }}
-              />
-
-              <AppWidget
-                title="Applications"
-                total={55566}
-                icon="eva:email-fill"
-                color="info"
-                chart={{
-                  series: 75,
-                }}
-              />
-            </Stack>
-          </Grid> */}
         </Grid>
       </Container>
     </>

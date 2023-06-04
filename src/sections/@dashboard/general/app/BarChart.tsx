@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/rootReducer';
 // components
 import Chart, { useChart } from '../../../../components/chart';
+
 // ----------------------------------------------------------------------
 
 const series = [{ data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380] }];
@@ -40,16 +41,11 @@ export default function ChartBar({title} : Props) {
         );
         setSeries(response.data.dtos);
         setLoading(false);
-        console.log("ChartBar에서 클릭한 word : ",buttonWord)
         const series3 = response.data.dtos;
 
-        for (let i = 0; i < series3.length; i+=1 ){
-          if (series3[i].resultDTOList[0].topic === buttonWord){
-            console.log(i,"번째",series3[i].resultDTOList[0].topic,"주제로 시작")
-            break
-          }
-        }
-
+        for (let i = 0; i < series3.length; i+=1 )
+          if (series3[i].resultDTOList[0].topic === buttonWord) break
+        
         const test1 = [];
         const test2 = [];
 
@@ -60,12 +56,9 @@ export default function ChartBar({title} : Props) {
 
         setTestCategories(test1);
         setTestSeries([{ data: test2}]);
-        console.log("최종 데이터 샘플 : ", testcategories, testseries)
       };
     fetchDatas();
   }, [buttonWord]);
-
-  console.log("그냥 호출 ? :",series2)
   
   const chartOptions = useChart({
     stroke: { show: false },
@@ -77,6 +70,10 @@ export default function ChartBar({title} : Props) {
     },
   });
 
-  return <Chart type="bar" series={testseries} options={chartOptions} height={320} />;
-   
+  return (
+    <Card>
+      <CardHeader title={title} subheader={buttonWord}/>
+        {loading ? <></> : <Chart type="bar" series={testseries} options={chartOptions} height={320} /> }
+    </Card>
+  )
 }

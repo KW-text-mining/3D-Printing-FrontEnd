@@ -1,8 +1,13 @@
-import React, {MouseEvent, useRef} from 'react';
-import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { useEffect, useState, MouseEvent } from 'react';
 import {CardProps, CardHeader, Card } from '@mui/material';
-import ReactWordcloud, { Callbacks, Word} from 'react-wordcloud';
+import ReactWordcloud, { Callbacks, Word } from 'react-wordcloud';
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { changeButtonWord } from '../../../../redux/slices/wordcloudbutton';
 import { RootState } from '../../../../redux/rootReducer';
+// components
+import Progressbar from '../../../../pages/dashboard/Progressbar';
 
 type ItemProps = {
     text: string;
@@ -12,15 +17,16 @@ type ItemProps = {
 interface Props extends CardProps {
     title?: string;
     subheader?: string;
-    words : ItemProps[];
   }
 
-export default function TagWordCloud({ title, words, ...other } : Props) {
+export default function TagWordCloud({ title, ...other } : Props) {
     
-    const svgRef = useRef<SVGSVGElement>(null);
-    
+    const dispatch = useDispatch();
+    const [loading,setLoading] = useState(true);
+
     const handleWordClick = (word: string, event: MouseEvent<SVGTextElement>) => {
         console.log(`wordcloud에서 클릭한 단어 ${word}`);
+        dispatch(changeButtonWord(word));
     }
 
     const callbacks: Callbacks = {
@@ -29,13 +35,37 @@ export default function TagWordCloud({ title, words, ...other } : Props) {
     };
 
     const buttonTitle = useSelector((state:RootState) => state.bigcatebutton);
-    console.log("tagwordcloud에서 buttonTitle : ", buttonTitle);
-    
+    const date = useSelector((state:RootState) => state.startenddate);
+    const start = JSON.stringify(date).slice(1,11)
+    const end = JSON.stringify(date).slice(11,21)
+    const [word, setWord] = useState([]);
+
+    useEffect(()=>{
+        setLoading(true);
+    },[buttonTitle])
+
+     // api 호출
+    useEffect(() => {
+    const fetchDatas = async () => {
+        const response = await axios.get(
+          `http://35.73.182.58:8080/data/test?startDate=${start}&endDate=${end}&category=${buttonTitle}`
+        );
+        setWord(response.data.topics);
+        setLoading(false);
+        console.log("LDA API호출시",start,end,buttonTitle)
+    };
+    fetchDatas();
+  }, [buttonTitle]);
+
+  console.log("LDA API : ", word);
+
     return (
         <Card {...other}>
         <CardHeader title={title} subheader={buttonTitle}/>
-            <ReactWordcloud words={words} callbacks={callbacks} />
-        </Card>
+        {loading ? <Progressbar/> : 
+            <ReactWordcloud words={word} callbacks={callbacks} />
+        }
+            </Card>
     )
 
 }

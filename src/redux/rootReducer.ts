@@ -2,6 +2,8 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 // slices
+import wordcloudReducer from './slices/wordcloudbutton'
+import startendReducer from './slices/startenddate';
 import bigcateReducer from './slices/bigcatebutton'
 import mailReducer from './slices/mail';
 import chatReducer from './slices/chat';
@@ -26,6 +28,8 @@ export const productPersistConfig = {
 };
 
 const rootReducer = combineReducers({
+  wordcloudbutton : wordcloudReducer,
+  startenddate : startendReducer,
   bigcatebutton : bigcateReducer,
   mail: mailReducer,
   chat: chatReducer,
