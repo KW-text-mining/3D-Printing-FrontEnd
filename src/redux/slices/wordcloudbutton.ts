@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// wordcloud의 word 클릭 시, reducer 생성
 const wordcloudbuttonslice = createSlice({
   name: 'wordcloudbutton',
   initialState: null,
