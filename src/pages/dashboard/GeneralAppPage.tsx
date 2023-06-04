@@ -29,7 +29,6 @@ import {
   AppDatePicker2,
   TagWordCloud,
   Ranks,
-  Words,
   BarChart,
 } from '../../sections/@dashboard/general/app';
 
