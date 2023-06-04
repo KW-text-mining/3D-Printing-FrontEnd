@@ -10,16 +10,7 @@ import { Container, Grid, Stack } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/rootReducer';
 // _mock_
-import {
-  _appFeatured,
-  _appAuthors,
-  _appInstalled,
-  _appRelated,
-  _appInvoices,
-  _bankingContacts,
-  _ecommerceLatestProducts,
-  _bigcategory_ranks
-} from '../../_mock/arrays';
+import {_bigcategory_ranks} from '../../_mock/arrays';
 // components
 import { useSettingsContext } from '../../components/settings';
 import Progressbar from './Progressbar';
