@@ -4,8 +4,8 @@ import { Paper, LinearProgress } from '@mui/material';
 import { Label } from '../../Block';
 
 // ----------------------------------------------------------------------
-
-const COLORS = [ 'primary'] as const;
+// progressbar color
+const COLORS = ['primary'] as const;
 
 const style = {
   p: 2,
@@ -23,7 +23,7 @@ type LinearProps = {
   progress: number;
   buffer: number;
 };
-
+// Loading Progressbar One
 export default function ProgressLinearOne({ progress, buffer }: LinearProps) {
   return (
 
