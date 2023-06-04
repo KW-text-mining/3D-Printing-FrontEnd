@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { changeDate } from '../../../../redux/slices/startenddate';
 import { useDateRangePicker } from '../../../../components/date-range-picker';
 
-export default function FirstComponent() {
+export default function AppDatePicker2() {
 
   const pickerInput = useDateRangePicker(new Date(), new Date());
   const start = JSON.stringify(pickerInput.startDate).slice(1,11);
