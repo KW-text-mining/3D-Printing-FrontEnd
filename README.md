@@ -1,4 +1,4 @@
 ## USING NPM
 
-- npm install --legacy-peer-deps
+- npm install OR npm install --legacy-peer-deps
 - npm run start
