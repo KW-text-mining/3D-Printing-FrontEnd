@@ -5,7 +5,7 @@ import { Block } from '../../sections/_examples/Block';
 
 // ----------------------------------------------------------------------
 
-export default function MUIProgressPage() {
+export default function Progressbar() {
   const [progress, setProgress] = useState(0);
   const [buffer, setBuffer] = useState(10);
 
