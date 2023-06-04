@@ -13,11 +13,12 @@ import ToysGames from './images/Toys&Games.png'
 
 // ----------------------------------------------------------------------
 
-// 사용 !
+// id 지정 
 const PRODUCT_ID =[
     0,1,2,3,4,5,6,7,8,9
 ]
 
+// name 지정 
 const PRODUCT_NAME = [
   '3D Printing',
   'Art',
@@ -31,6 +32,7 @@ const PRODUCT_NAME = [
   'Toys & Games'
 ];
 
+// image 지정 
 export const PRODUCT_IMAGES = [
   Printing,
   Art,
@@ -44,7 +46,7 @@ export const PRODUCT_IMAGES = [
   ToysGames
 ];
 
-// 필요 !
+// 오른쪽 ranks compoenent를 위한 id, name, image지정
 export const _bigcategory_ranks = [...Array(10)].map((_, index) => ({
   id: PRODUCT_ID[index],
   name: PRODUCT_NAME[index],
