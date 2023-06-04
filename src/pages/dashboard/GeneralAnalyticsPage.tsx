@@ -4,8 +4,6 @@ import { Helmet } from 'react-helmet-async';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
-// _mock_
-import { _analyticPost, _analyticOrderTimeline, _analyticTraffic } from '../../_mock/arrays';
 // components
 import { useSettingsContext } from '../../components/settings';
 import { AppWidgetSummary } from '../../sections/@dashboard/general/app';
