@@ -7,7 +7,8 @@ import { useTheme, alpha } from '@mui/material/styles';
 
 export default function useChart(options?: ApexOptions) {
   const theme = useTheme();
-
+  // LDA Wordcloud 상세 결과 
+  // 그래프 표현 
   const LABEL_TOTAL = {
     show: true,
     label: 'Total',
