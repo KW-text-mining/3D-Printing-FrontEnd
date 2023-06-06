@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 // @mui
 import { Card, CardProps, CardHeader } from '@mui/material';
+import ProgressBar from 'src/components/progress-bar/ProgressBar';
 // redux
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/rootReducer';
@@ -21,7 +22,6 @@ export default function ChartBar({title} : Props) {
   const [loading,setLoading] = useState(true);
   const [testcategories, setTestCategories] = useState<string[]>([]);
   const [testseries, setTestSeries] = useState(series);
-  const [series2, setSeries] = useState({});
 
   const buttonTitle = useSelector((state:RootState) => state.bigcatebutton);
   const buttonWord = useSelector((state:RootState) => state.wordcloudbutton);
@@ -39,23 +39,22 @@ export default function ChartBar({title} : Props) {
         const response = await axios.get(
           `http://35.73.182.58:8080/data/test?startDate=${start}&endDate=${end}&category=${buttonTitle}`
         );
-        setSeries(response.data.dtos);
         setLoading(false);
-        const series3 = response.data.dtos;
+        const APIseries = response.data.dtos;
 
-        for (let i = 0; i < series3.length; i+=1 )
-          if (series3[i].resultDTOList[0].topic === buttonWord) break
+        for (let i = 0; i < APIseries.length; i+=1 )
+          if (APIseries[i].resultDTOList[0].topic === buttonWord) break
         
-        const test1 = [];
-        const test2 = [];
+        const categoryData = [];
+        const seriesData = [];
 
-        for (let i = 0; i < series3.length; i+=1 ){
-          test1.push(series3[i].resultDTOList[i].topic)
-          test2.push(series3[i].resultDTOList[i].percent)
+        for (let i = 0; i < APIseries.length; i+=1 ){
+          categoryData.push(APIseries[i].resultDTOList[i].topic)
+          seriesData.push(APIseries[i].resultDTOList[i].percent)
         }
 
-        setTestCategories(test1);
-        setTestSeries([{ data: test2}]);
+        setTestCategories(categoryData);
+        setTestSeries([{ data: seriesData}]);
       };
     fetchDatas();
   }, [buttonWord]);
@@ -73,7 +72,7 @@ export default function ChartBar({title} : Props) {
   return (
     <Card>
       <CardHeader title={title} subheader={buttonWord}/>
-        {loading ? <></> : <Chart type="bar" series={testseries} options={chartOptions} height={320} /> }
+        {loading ? <ProgressBar/> : <Chart type="bar" series={testseries} options={chartOptions} height={320} /> }
     </Card>
   )
 }
