@@ -41,16 +41,20 @@ export default function ChartBar({title} : Props) {
         );
         setLoading(false);
         const APIseries = response.data.dtos;
+        let index = 0;
 
         for (let i = 0; i < APIseries.length; i+=1 )
-          if (APIseries[i].resultDTOList[0].topic === buttonWord) break
-        
+          if (APIseries[i].resultDTOList[i].topic === buttonWord) 
+          { 
+            index = i;
+            break
+          }
         const categoryData = [];
         const seriesData = [];
 
-        for (let i = 0; i < APIseries.length; i+=1 ){
-          categoryData.push(APIseries[i].resultDTOList[i].topic)
-          seriesData.push(APIseries[i].resultDTOList[i].percent)
+        for (let j = 0; j < APIseries.length; j+=1 ){
+          categoryData.push(APIseries[index].resultDTOList[j].topic)
+          seriesData.push(APIseries[index].resultDTOList[j].percent)
         }
 
         setTestCategories(categoryData);
@@ -58,7 +62,10 @@ export default function ChartBar({title} : Props) {
       };
     fetchDatas();
   }, [buttonWord]);
-  
+
+  console.log("category : ",testcategories)
+  console.log("\n series : ",testseries)
+
   const chartOptions = useChart({
     stroke: { show: false },
     plotOptions: {

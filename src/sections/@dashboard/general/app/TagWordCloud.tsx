@@ -38,7 +38,7 @@ export default function TagWordCloud({ title, ...other } : Props) {
     const date = useSelector((state:RootState) => state.startenddate);
     const start = JSON.stringify(date).slice(1,11)
     const end = JSON.stringify(date).slice(11,21)
-    const [word, setWord] = useState([]);
+    const [wordcloud, setWordCloud] = useState([]);
 
     useEffect(()=>{
         setLoading(true);
@@ -50,20 +50,19 @@ export default function TagWordCloud({ title, ...other } : Props) {
         const response = await axios.get(
           `http://35.73.182.58:8080/data/test?startDate=${start}&endDate=${end}&category=${buttonTitle}`
         );
-        setWord(response.data.topics);
+        setWordCloud(response.data.topics);
         setLoading(false);
-        console.log("LDA API호출시",start,end,buttonTitle)
     };
     fetchDatas();
   }, [buttonTitle]);
 
-  console.log("LDA API : ", word);
+  console.log("topics API 호출 : ",wordcloud)
 
     return (
         <Card {...other}>
         <CardHeader title={title} subheader={buttonTitle}/>
         {loading ? <Progressbar/> : 
-            <ReactWordcloud words={word} callbacks={callbacks} />
+            <ReactWordcloud words={wordcloud} callbacks={callbacks} />
         }
             </Card>
     )
