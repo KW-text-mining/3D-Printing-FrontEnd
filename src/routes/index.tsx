@@ -1,4 +1,4 @@
-import { HashRouter, Navigate, useRoutes } from 'react-router-dom';
+import { HashRouter, Route, Navigate, useRoutes } from 'react-router-dom';
 
 // layouts
 import DashboardLayout from '../layouts/dashboard';
@@ -14,22 +14,20 @@ import {
 export default function Router() {
   return (
     <HashRouter>
-    {useRoutes([
-    // Dashboard
-    {
-      path: 'dashboard',
-      element: (
-          <DashboardLayout />
-      ),
-      children: [
-        { element: <Navigate to='/dashboard/app' replace />, index: true },
-        { path: 'app', element: <GeneralAppPage /> },
-        { path: 'analytics', element: <GeneralAnalyticsPage /> },
-      ],
-    },
-    // Main Page
-    { path: '*', element: <Navigate to="/dashboard/app" replace /> },
-  ])}
-  </HashRouter>
-  )
+      {useRoutes([
+        // Dashboard
+        {
+          path: 'dashboard',
+          element: <DashboardLayout />,
+          children: [
+            { element: <Navigate to="/dashboard/app" replace />, index: true },
+            { path: 'app', element: <GeneralAppPage /> },
+            { path: 'analytics', element: <GeneralAnalyticsPage /> },
+          ],
+        },
+        // Main Page
+        { path: '*', element: <Navigate to="/dashboard/app" replace /> },
+      ])}
+    </HashRouter>
+  );
 }
