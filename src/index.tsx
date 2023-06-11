@@ -1,8 +1,8 @@
+import { HashRouter } from "react-router-dom";
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import { HashRouter } from "react-router-dom";
 
 // ----------------------------------------------------------------------
 
