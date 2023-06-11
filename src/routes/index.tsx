@@ -12,7 +12,9 @@ import {
 // ----------------------------------------------------------------------
 
 export default function Router() {
-  return useRoutes([
+  return (
+    <HashRouter>
+      {useRoutes([
         // Dashboard
         {
           path: 'dashboard',
@@ -25,5 +27,7 @@ export default function Router() {
         },
         // Main Page
         { path: '*', element: <Navigate to="/dashboard/app" replace /> },
-      ])
+      ])}
+    </HashRouter>
+  );
 }
