@@ -1,6 +1,4 @@
 import ReactDOM from 'react-dom/client';
-//
-import axios from 'axios';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
@@ -8,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 // ----------------------------------------------------------------------
 
 // axios 기본 요청 헤더 설정
-axios.defaults.headers.common['Referrer-Policy'] = 'no-referrer';
+// axios.defaults.headers.common['Referrer-Policy'] = 'no-referrer';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
