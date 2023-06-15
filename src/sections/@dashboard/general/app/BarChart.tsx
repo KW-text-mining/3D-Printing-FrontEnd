@@ -37,7 +37,7 @@ export default function ChartBar({title} : Props) {
   useEffect(() => {
     const fetchDatas = async () => {
         const response = await axios.get(
-          `http://35.73.182.58:8080/data/test?startDate=${start}&endDate=${end}&category=${buttonTitle}`
+          `https://thingiverse.shop/data/test?startDate=${start}&endDate=${end}&category=${buttonTitle}`
         );
         setLoading(false);
         const APIseries = response.data.dtos;

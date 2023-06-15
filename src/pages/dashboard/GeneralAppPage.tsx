@@ -39,7 +39,7 @@ export default function GeneralAppPage() {
   useEffect(() => {
     const fetchDatas = async () => {
         const response = await axios.get(
-          `http://35.73.182.58:8080/data/period?startDate=${start}&endDate=${end}`
+          `https://thingiverse.shop/data/period?startDate=${start}&endDate=${end}`
         );
 
         setBigCategory(response.data);

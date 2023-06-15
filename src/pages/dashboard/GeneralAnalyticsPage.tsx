@@ -30,13 +30,13 @@ export default function GeneralAnalyticsPage() {
   useEffect(() => {
     const fetchDatas = async () => {
         const response = await axios.get(
-          `http://35.73.182.58:8080/data/dataweek`
+          `https://thingiverse.shop/data/dataweek`
         );
         const response2 = await axios.get(
-          `http://35.73.182.58:8080/data/datayears`
+          `https://thingiverse.shop/data/datayears`
         );
         const response3 = await axios.get(
-          `http://35.73.182.58:8080/data/periodmonth?year=2023&month=03`
+          `https://thingiverse.shop/data/periodmonth?year=2023&month=03`
         );
 
         setWeekData(response.data);
