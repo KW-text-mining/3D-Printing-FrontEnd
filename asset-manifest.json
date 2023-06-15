@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/3D-Printing-FrontEnd/static/css/main.a967d59e.css",
-    "main.js": "/3D-Printing-FrontEnd/static/js/main.d5c9fb17.js",
+    "main.js": "/3D-Printing-FrontEnd/static/js/main.6d721f04.js",
     "static/js/678.81c62c69.chunk.js": "/3D-Printing-FrontEnd/static/js/678.81c62c69.chunk.js",
     "static/css/601.15b850dc.chunk.css": "/3D-Printing-FrontEnd/static/css/601.15b850dc.chunk.css",
-    "static/js/601.24dffad2.chunk.js": "/3D-Printing-FrontEnd/static/js/601.24dffad2.chunk.js",
-    "static/js/345.c377eaef.chunk.js": "/3D-Printing-FrontEnd/static/js/345.c377eaef.chunk.js",
+    "static/js/601.3f4fa53b.chunk.js": "/3D-Printing-FrontEnd/static/js/601.3f4fa53b.chunk.js",
+    "static/js/345.5b5e4182.chunk.js": "/3D-Printing-FrontEnd/static/js/345.5b5e4182.chunk.js",
     "static/js/496.c8bc0447.chunk.js": "/3D-Printing-FrontEnd/static/js/496.c8bc0447.chunk.js",
     "static/js/665.c2e46b4a.chunk.js": "/3D-Printing-FrontEnd/static/js/665.c2e46b4a.chunk.js",
     "static/js/580.bac59030.chunk.js": "/3D-Printing-FrontEnd/static/js/580.bac59030.chunk.js",
-    "static/js/467.9268353f.chunk.js": "/3D-Printing-FrontEnd/static/js/467.9268353f.chunk.js",
+    "static/js/467.ebb00285.chunk.js": "/3D-Printing-FrontEnd/static/js/467.ebb00285.chunk.js",
     "static/js/mapbox-gl-csp-worker.f8c275ab.worker.js": "/3D-Printing-FrontEnd/static/js/mapbox-gl-csp-worker.f8c275ab.worker.js",
     "static/media/Models.png": "/3D-Printing-FrontEnd/static/media/Models.c873f6dddf03a5fa2037.png",
     "static/media/Gadgets.png": "/3D-Printing-FrontEnd/static/media/Gadgets.f8d749234994d0b0873c.png",
@@ -27,18 +27,18 @@
     "index.html": "/3D-Printing-FrontEnd/index.html",
     "static/media/slick.woff": "/3D-Printing-FrontEnd/static/media/slick.295183786cd8a1389865.woff",
     "main.a967d59e.css.map": "/3D-Printing-FrontEnd/static/css/main.a967d59e.css.map",
-    "main.d5c9fb17.js.map": "/3D-Printing-FrontEnd/static/js/main.d5c9fb17.js.map",
+    "main.6d721f04.js.map": "/3D-Printing-FrontEnd/static/js/main.6d721f04.js.map",
     "678.81c62c69.chunk.js.map": "/3D-Printing-FrontEnd/static/js/678.81c62c69.chunk.js.map",
     "601.15b850dc.chunk.css.map": "/3D-Printing-FrontEnd/static/css/601.15b850dc.chunk.css.map",
-    "601.24dffad2.chunk.js.map": "/3D-Printing-FrontEnd/static/js/601.24dffad2.chunk.js.map",
-    "345.c377eaef.chunk.js.map": "/3D-Printing-FrontEnd/static/js/345.c377eaef.chunk.js.map",
+    "601.3f4fa53b.chunk.js.map": "/3D-Printing-FrontEnd/static/js/601.3f4fa53b.chunk.js.map",
+    "345.5b5e4182.chunk.js.map": "/3D-Printing-FrontEnd/static/js/345.5b5e4182.chunk.js.map",
     "496.c8bc0447.chunk.js.map": "/3D-Printing-FrontEnd/static/js/496.c8bc0447.chunk.js.map",
     "665.c2e46b4a.chunk.js.map": "/3D-Printing-FrontEnd/static/js/665.c2e46b4a.chunk.js.map",
     "580.bac59030.chunk.js.map": "/3D-Printing-FrontEnd/static/js/580.bac59030.chunk.js.map",
-    "467.9268353f.chunk.js.map": "/3D-Printing-FrontEnd/static/js/467.9268353f.chunk.js.map"
+    "467.ebb00285.chunk.js.map": "/3D-Printing-FrontEnd/static/js/467.ebb00285.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a967d59e.css",
-    "static/js/main.d5c9fb17.js"
+    "static/js/main.6d721f04.js"
   ]
 }
